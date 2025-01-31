@@ -6,19 +6,19 @@ Purpose and Elevator Pitch
 The purpose of this project is to create a web application, Earth Echo, that encourages users to adopt eco-friendly habits by tracking sustainable actions, providing actionable tips, and celebrating milestones. We aim to solve the problem of inaccessible resources and lack of motivation for environmentally conscious individuals who want to lead a sustainable lifestyle.
 
 User Profile
-Target Users
-People who care about the environment want simple tools to build eco-friendly habits into their daily lives.
-Young professionals, students, and parents are eager to lower their impact on the planet.
-They want a fun and easy way to track their progress and stay inspired.
+Target Users:
+  People who care about the environment want simple tools to build eco-friendly habits into their daily lives.
+  Young professionals, students, and parents are eager to lower their impact on the planet.
+  They want a fun and easy way to track their progress and stay inspired.
 Motivations and Problems
 Motivations:
-Desire to live sustainably and contribute positively to the environment.
-Need for a tool that tracks progress and celebrates achievements to stay motivated.
-Access to reliable tips and guides for eco-friendly practices.
+  Desire to live sustainably and contribute positively to the environment.
+  Need for a tool that tracks progress and celebrates achievements to stay motivated.
+  Access to reliable tips and guides for eco-friendly practices.
 Problems:
-It's hard to find one simple place for sustainable living tips.
-There’s too much information online, making it confusing to begin with.
-Most current options aren’t interactive or made just for you.
+  It's hard to find one simple place for sustainable living tips.
+  There’s too much information online, making it confusing to begin with.
+  Most current options aren’t interactive or made just for you.
 
 
 
@@ -34,43 +34,49 @@ Our research is based on:
 Team Input: Our team shared ideas and experiences to find key user needs.
 Online Research: We checked blogs, forums, and eco-friendly platforms to spot gaps and opportunities.
 
+
 Problem Definition
-Identified Problems
-Users don’t have a simple, easy-to-use platform to track eco-friendly actions and get tips.
-Current options are overwhelming and don’t keep users motivated.
-People need clear, trustworthy, and personalized content to help them live sustainably.
-Existing Solutions
-Current apps and blogs provide eco-friendly tips but lack interactive features and motivation tools.
-No existing solution combines tracking, tips, and achievements in a single, streamlined platform.
-User Stories
-As a parent, I want a tool to track my family’s sustainable habits so that I can teach my children the importance of eco-friendly living.
-As a college student, I want actionable tips and a progress tracker so that I can confidently adopt sustainable practices.
-As a young professional, I want a platform that motivates me with achievements so that I can stay consistent with my eco-friendly habits.
-Problem Statement
-Environmentally conscious individuals struggle to find accessible, engaging, and trustworthy platforms to support their sustainable lifestyles. Earth Echo addresses this by offering a centralized, interactive platform that tracks eco-friendly actions, provides reliable resources, and celebrates milestones to motivate users.
+Identified Problems:
+  Users don’t have a simple, easy-to-use platform to track eco-friendly actions and get tips.
+  Current options are overwhelming and don’t keep users motivated.
+  People need clear, trustworthy, and personalized content to help them live sustainably.
+Existing Solutions:
+  Current apps and blogs provide eco-friendly tips but lack interactive features and motivation tools.
+  No existing solution combines tracking, tips, and achievements in a single, streamlined platform.
+User Stories:
+  As a parent, I want a tool to track my family’s sustainable habits so that I can teach my children the importance of eco-friendly living.
+  As a college student, I want actionable tips and a progress tracker so that I can confidently adopt sustainable practices.
+  As a young professional, I want a platform that motivates me with achievements so that I can stay consistent with my eco-friendly habits.
+Problem Statement:
+  Environmentally conscious individuals struggle to find accessible, engaging, and trustworthy platforms to support their sustainable lifestyles. Earth Echo addresses this by offering a centralized, interactive platform that tracks eco-friendly actions, provides reliable resources, and celebrates milestones to motivate users.
+
 
 Requirements
-Target Platform
+Target Platform:
 Earth Echo will be developed as a web application supporting:
 Web Browsers: Accessible on all modern browsers.
 Mobile and Desktop: Responsive design for seamless usability on both platforms.
-Core Features
-Home Page: Highlights Earth Echo’s mission and the importance of sustainable living.
-Action Log: Users can record and track eco-friendly actions such as recycling, reducing waste, and saving water.
-Interactive Dashboard: Displays overall contributions and progress in a visually engaging way.
-Eco Inspirations: A curated section with tips, guides, and articles for sustainable living.
-Achievements and Badges: Celebrate milestones with streak-based badges and rewards.
-Real-Time Visualization: Includes progress trackers and animated achievements for motivation.
-Simple Forms: Allows users to log actions easily, with validation and feedback.
-Personalized Recommendations: Offers tailored tips based on user preferences and actions.
-Community Sharing: Enables users to share tips and achievements with others.
-Resource Bookmarking: Lets users save and revisit favourite tips and guides.
+Core Features:
+  Home Page: Highlights Earth Echo’s mission and the importance of sustainable living.
+  Action Log: Users can record and track eco-friendly actions such as recycling, reducing waste, and saving water.
+  Interactive Dashboard: Displays overall contributions and progress in a visually engaging way.
+  Eco Inspirations: A curated section with tips, guides, and articles for sustainable living.
+  Achievements and Badges: Celebrate milestones with streak-based badges and rewards.
+  Real-Time Visualization: Includes progress trackers and animated achievements for motivation.
+  Simple Forms: Allows users to log actions easily, with validation and feedback.
+  Personalized Recommendations: Offers tailored tips based on user preferences and actions.
+  Community Sharing: Enables users to share tips and achievements with others.
+  Resource Bookmarking: Lets users save and revisit favourite tips and guides.
+
+
 Additional Notes
-Technical Considerations:
-Semantic HTML for content clarity.
-Responsive CSS designs for accessibility on multiple devices.
-JavaScript for dynamic interactivity and real-time updates.
-Framework Limitations: No external CSS or JavaScript frameworks will be used to meet project constraints.
+  Technical Considerations:
+  Semantic HTML for content clarity.
+  Responsive CSS designs for accessibility on multiple devices.
+  JavaScript for dynamic interactivity and real-time updates.
+  Framework Limitations: No external CSS or JavaScript frameworks will be used to meet project constraints.
+
+
 References
 Team Interviews: Insights from discussions with potential users.
 Online Research: Gaps identified from existing eco-friendly platforms.
