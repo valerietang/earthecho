@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievements & Badges</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .badge {
+            width: 120px;
+            height: 120px;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -26,6 +44,17 @@
     <section>
         <h2>Earn Badges</h2>
         <p>Unlock badges and milestones for your sustainability efforts.</p>
+    </section>
+    
+    <section>
+        <h2>Your Achievements</h2>
+        <div class="badges-container">
+            <div class="badge">🌱 Eco Starter</div>
+            <div class="badge">🚲 Green Commuter</div>
+            <div class="badge">💧 Water Saver</div>
+            <div class="badge">♻️ Waste Reducer</div>
+            <div class="badge">🌍 Eco Hero</div>
+        </div>
     </section>
 </main>
 <footer>
