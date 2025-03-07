@@ -63,9 +63,6 @@
     <section>
         <h2>Your Achievements</h2>
         <div class="badges-container">
-            <div class="badge" id="starter-badge">🌱 Eco Starter
-                <div class="progress"><div class="progress-bar" id="starter-progress"></div></div>
-            </div>
             <div class="badge" id="commuter-badge">🚲 Green Commuter
                 <div class="progress"><div class="progress-bar" id="commuter-progress"></div></div>
             </div>
@@ -74,9 +71,6 @@
             </div>
             <div class="badge" id="waste-badge">♻️ Waste Reducer
                 <div class="progress"><div class="progress-bar" id="waste-progress"></div></div>
-            </div>
-            <div class="badge" id="hero-badge">🌍 Eco Hero
-                <div class="progress"><div class="progress-bar" id="hero-progress"></div></div>
             </div>
         </div>
     </section>
@@ -87,27 +81,18 @@
 
 <script>
     let progressValues = {
-        "starter": 0,
         "commuter": 0,
         "water": 0,
-        "waste": 0,
-        "hero": 0
+        "waste": 0
     };
     
-    function completeAction(action) {
-        if (progressValues[action] < 100) {
+    function logAction(action) {
+        if (progressValues[action] !== undefined && progressValues[action] < 100) {
             progressValues[action] += 20;
             document.getElementById(`${action}-progress`).style.width = progressValues[action] + "%";
         }
     }
-    
-    setInterval(() => {
-        completeAction("starter");
-        completeAction("commuter");
-        completeAction("water");
-        completeAction("waste");
-        completeAction("hero");
-    }, 5000);
 </script>
 </body>
 </html>
+
