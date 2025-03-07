@@ -61,61 +61,70 @@
     <section class="quiz-container">
         <h2>Test Your Eco Knowledge!</h2>
         <p>Answer the questions below to learn more about sustainability!</p>
-
-        <div class="question">Which is a renewable energy source?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result1').textContent='Incorrect! ❌'; document.getElementById('result1').style.color='red'">Coal</button>
-            <button onclick="document.getElementById('result1').textContent='Correct! 🌱'; document.getElementById('result1').style.color='green'">Solar</button>
-        </div>
-        <div class="result" id="result1"></div>
-
-        <div class="question">What reduces plastic waste?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result2').textContent='Incorrect! ❌'; document.getElementById('result2').style.color='red'">Burn it</button>
-            <button onclick="document.getElementById('result2').textContent='Correct! 🌱'; document.getElementById('result2').style.color='green'">Use reusable items</button>
-        </div>
-        <div class="result" id="result2"></div>
-
-        <div class="question">Which of these is NOT biodegradable?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result3').textContent='Incorrect! ❌'; document.getElementById('result3').style.color='red'">Banana Peel</button>
-            <button onclick="document.getElementById('result3').textContent='Correct! 🌱'; document.getElementById('result3').style.color='green'">Plastic Bottle</button>
-        </div>
-        <div class="result" id="result3"></div>
-
-        <div class="question">How long does plastic take to decompose?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result4').textContent='Incorrect! ❌'; document.getElementById('result4').style.color='red'">50 years</button>
-            <button onclick="document.getElementById('result4').textContent='Correct! 🌱'; document.getElementById('result4').style.color='green'">450 years</button>
-        </div>
-        <div class="result" id="result4"></div>
-
-        <div class="question">What is the best way to travel eco-friendly?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result5').textContent='Correct! 🌱'; document.getElementById('result5').style.color='green'">Biking or Walking</button>
-            <button onclick="document.getElementById('result5').textContent='Incorrect! ❌'; document.getElementById('result5').style.color='red'">Flying</button>
-        </div>
-        <div class="result" id="result5"></div>
-
-        <div class="question">What is the percentage of freshwater on Earth?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result6').textContent='Incorrect! ❌'; document.getElementById('result6').style.color='red'">50%</button>
-            <button onclick="document.getElementById('result6').textContent='Correct! 🌱'; document.getElementById('result6').style.color='green'">Less than 3%</button>
-        </div>
-        <div class="result" id="result6"></div>
-
-        <div class="question">Which gas causes global warming?</div>
-        <div class="options">
-            <button onclick="document.getElementById('result7').textContent='Correct! 🌱'; document.getElementById('result7').style.color='green'">Carbon Dioxide</button>
-            <button onclick="document.getElementById('result7').textContent='Incorrect! ❌'; document.getElementById('result7').style.color='red'">Oxygen</button>
-        </div>
-        <div class="result" id="result7"></div>
-
-        <a href="interactive_dashboard.html">Go to Interactive Dashboard</a>
+        
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+        <div class="result" id="result"></div>
+        
+        <button onclick="nextQuestion()">Next Question</button>
+        <a href="interactive_dashboard.html" id="exit" style="display:none;">Go to Interactive Dashboard</a>
     </section>
 </main>
 <footer>
     <p>&copy; 2025 Earth Echo. All rights reserved.</p>
 </footer>
+<script>
+    const questions = [
+        { q: "Which is a renewable energy source?", options: ["Coal", "Solar"], answer: 1 },
+        { q: "What reduces plastic waste?", options: ["Burn it", "Use reusable items"], answer: 1 },
+        { q: "Which of these is NOT biodegradable?", options: ["Banana Peel", "Plastic Bottle"], answer: 1 },
+        { q: "How long does plastic take to decompose?", options: ["50 years", "450 years"], answer: 1 },
+        { q: "What is the best way to travel eco-friendly?", options: ["Biking or Walking", "Flying"], answer: 0 },
+        { q: "What is the percentage of freshwater on Earth?", options: ["50%", "Less than 3%"], answer: 1 },
+        { q: "Which gas causes global warming?", options: ["Carbon Dioxide", "Oxygen"], answer: 0 },
+        { q: "What is the main cause of deforestation?", options: ["Urbanization", "Logging & Agriculture"], answer: 1 },
+        { q: "Which item can be recycled?", options: ["Plastic Bag", "Glass Bottle"], answer: 1 },
+        { q: "What is the primary source of ocean pollution?", options: ["Plastic Waste", "Oil Spills"], answer: 0 }
+    ];
+
+    let currentQuestion = 0;
+
+    function showQuestion() {
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        const resultElement = document.getElementById("result");
+        resultElement.textContent = "";
+        questionElement.textContent = questions[currentQuestion].q;
+        optionsElement.innerHTML = "";
+        questions[currentQuestion].options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.onclick = () => {
+                if (index === questions[currentQuestion].answer) {
+                    resultElement.textContent = "Correct! 🌱";
+                    resultElement.style.color = "green";
+                } else {
+                    resultElement.textContent = "Incorrect! ❌";
+                    resultElement.style.color = "red";
+                }
+            };
+            optionsElement.appendChild(button);
+        });
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            showQuestion();
+        } else {
+            document.getElementById("question").textContent = "Quiz Completed!";
+            document.getElementById("options").innerHTML = "";
+            document.getElementById("result").textContent = "Well Done!";
+            document.getElementById("exit").style.display = "block";
+        }
+    }
+
+    showQuestion();
+</script>
 </body>
 </html>
