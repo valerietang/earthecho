@@ -117,17 +117,20 @@
         if (badgeKey && progressValues[badgeKey] < 100) {
             progressValues[badgeKey] += 20;
             document.getElementById(`${badgeKey}-progress`).style.width = progressValues[badgeKey] + "%";
+            localStorage.setItem(badgeKey, progressValues[badgeKey]); // Save progress
             console.log(`Updated ${badgeKey}-progress to ${progressValues[badgeKey]}%`);
         }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("log-action-btn").addEventListener("click", function() {
-            let actionSelected = document.getElementById("action").value;
-            logAction(actionSelected);
+        Object.keys(progressValues).forEach(key => {
+            let storedValue = localStorage.getItem(key);
+            if (storedValue) {
+                progressValues[key] = parseInt(storedValue);
+                document.getElementById(`${key}-progress`).style.width = progressValues[key] + "%";
+            }
         });
     });
 </script>
-
 </body>
 </html>
