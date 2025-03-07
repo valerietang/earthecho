@@ -92,45 +92,27 @@
 </footer>
 
 <script>
-    let progressValues = {
-        "commuter": 0,
-        "water": 0,
-        "waste": 0,
-        "recycling": 0,
-        "carpool": 0,
-        "energy": 0
+    let actionMap = {
+        "Using public transport": "commuter",
+        "Saving water": "water",
+        "Reducing waste": "waste",
+        "Recycling": "recycling",
+        "Carpool": "carpool",
+        "Use energy-efficient appliances": "energy"
     };
 
-    function logAction(action) {
-        let actionMap = {
-            "Using public transport": "commuter",
-            "Saving water": "water",
-            "Reducing waste": "waste",
-            "Recycling": "recycling",
-            "Carpool": "carpool",
-            "Use energy-efficient appliances": "energy"
-        };
+    document.addEventListener("DOMContentLoaded", function () {
+        let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
 
-        let badgeKey = actionMap[action];
-        console.log(`Logging action: ${action} -> Badge: ${badgeKey}`);
-
-        if (badgeKey && progressValues[badgeKey] < 100) {
-            progressValues[badgeKey] += 20;
-            document.getElementById(`${badgeKey}-progress`).style.width = progressValues[badgeKey] + "%";
-            localStorage.setItem(badgeKey, progressValues[badgeKey]); // Save progress
-            console.log(`Updated ${badgeKey}-progress to ${progressValues[badgeKey]}%`);
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        Object.keys(progressValues).forEach(key => {
-            let storedValue = localStorage.getItem(key);
-            if (storedValue) {
-                progressValues[key] = parseInt(storedValue);
-                document.getElementById(`${key}-progress`).style.width = progressValues[key] + "%";
+        Object.keys(actionCounts).forEach(action => {
+            let badgeKey = actionMap[action];
+            if (badgeKey && document.getElementById(`${badgeKey}-progress`)) {
+                let progress = Math.min(100, actionCounts[action] * 10); // 10% per logged action
+                document.getElementById(`${badgeKey}-progress`).style.width = progress + "%";
             }
         });
     });
 </script>
+
 </body>
 </html>
