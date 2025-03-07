@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco-Friendly Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     <style>
         .quiz-container {
             max-width: 600px;
@@ -13,19 +12,23 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .question {
+            margin-bottom: 15px;
             font-size: 18px;
             margin: 15px 0;
         }
         .options button {
             display: block;
             width: 100%;
+            padding: 10px;
             margin: 5px 0;
             padding: 10px;
             border: none;
             background-color: #4CAF50;
             color: white;
+            border: none;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
@@ -33,14 +36,12 @@
         .options button:hover {
             background-color: #45a049;
         }
+        .result {
         #result {
             margin-top: 20px;
             font-size: 20px;
             font-weight: bold;
-        }
-    </style>
-</head>
-<body>
+@@ -44,79 +45,87 @@
 <header>
     <h1>Eco-Friendly Quiz</h1>
 </header>
@@ -53,82 +54,20 @@
         <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
         <li><a href="achievements.html">Achievements & Badges</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html">Donate</a></li>
+        <li><a href="donate.html">Donate</a></li>  
     </ul>
 </nav>
 <main>
     <section class="quiz-container">
+        <h2>Test Your Eco Knowledge!</h2>
+        <div class="question" id="question">Loading question...</div>
+        <div class="options" id="options"></div>
+        <div class="result" id="result"></div>
         <h2>Test Your Eco Knowledge</h2>
         <p>Answer the questions below to learn more about sustainability!</p>
-        <div class="question">What is the most eco-friendly way to travel?</div>
-        <div class="options">
-            <button onclick="showResult(true)">Biking or Walking</button>
-            <button onclick="showResult(false)">Carpooling</button>
-            <button onclick="showResult(false)">Public Transport</button>
-            <button onclick="showResult(false)">Flying</button>
-        </div>
-        <div class="question">Which of these is NOT biodegradable?</div>
-        <div class="options">
-            <button onclick="showResult(false)">Banana Peel</button>
-            <button onclick="showResult(true)">Plastic Bottle</button>
-            <button onclick="showResult(false)">Paper</button>
-            <button onclick="showResult(false)">Cotton Shirt</button>
-        </div>
-        <div class="question">How long does it take for plastic to decompose?</div>
-        <div class="options">
-            <button onclick="showResult(false)">50 years</button>
-            <button onclick="showResult(false)">100 years</button>
-            <button onclick="showResult(true)">450 years</button>
-            <button onclick="showResult(false)">1000 years</button>
-        </div>
-        <div class="question">What is the 3R principle in sustainability?</div>
-        <div class="options">
-            <button onclick="showResult(false)">Reuse, Recycle, Renew</button>
-            <button onclick="showResult(true)">Reduce, Reuse, Recycle</button>
-            <button onclick="showResult(false)">Repair, Reuse, Recycle</button>
-            <button onclick="showResult(false)">Restore, Reduce, Recycle</button>
-        </div>
-        <div class="question">Which energy source is the most sustainable?</div>
-        <div class="options">
-            <button onclick="showResult(false)">Coal</button>
-            <button onclick="showResult(true)">Solar power</button>
-            <button onclick="showResult(false)">Natural gas</button>
-            <button onclick="showResult(false)">Nuclear power</button>
-        </div>
-        <div class="question">What is the purpose of a compost bin?</div>
-        <div class="options">
-            <button onclick="showResult(false)">To store trash</button>
-            <button onclick="showResult(true)">To turn organic waste into soil</button>
-            <button onclick="showResult(false)">To separate plastic waste</button>
-            <button onclick="showResult(false)">To collect rainwater</button>
-        </div>
-        <div class="question">Which material is easiest to recycle?</div>
-        <div class="options">
-            <button onclick="showResult(false)">Plastic</button>
-            <button onclick="showResult(false)">Glass</button>
-            <button onclick="showResult(true)">Aluminum</button>
-            <button onclick="showResult(false)">Styrofoam</button>
-        </div>
-        <div class="question">What type of energy is wind power?</div>
-        <div class="options">
-            <button onclick="showResult(true)">Renewable</button>
-            <button onclick="showResult(false)">Non-renewable</button>
-            <button onclick="showResult(false)">Fossil Fuel</button>
-            <button onclick="showResult(false)">Nuclear</button>
-        </div>
-        <div class="question">What is a common example of upcycling?</div>
-        <div class="options">
-            <button onclick="showResult(true)">Turning old jeans into a bag</button>
-            <button onclick="showResult(false)">Throwing paper in recycling</button>
-            <button onclick="showResult(false)">Buying new clothes</button>
-            <button onclick="showResult(false)">Using disposable cups</button>
-        </div>
-        <div class="question">Which action helps conserve water at home?</div>
-        <div class="options">
-            <button onclick="showResult(true)">Turning off the tap while brushing teeth</button>
-            <button onclick="showResult(false)">Taking long showers</button>
-            <button onclick="showResult(false)">Washing small loads of laundry</button>
-            <button onclick="showResult(false)">Watering plants during midday</button>
+        <div id="quiz">
+            <p class="question" id="question-text">Loading question...</p>
+            <div class="options" id="options-container"></div>
         </div>
         <p id="result"></p>
     </section>
@@ -136,17 +75,100 @@
 <footer>
     <p>&copy; 2025 Earth Echo. All rights reserved.</p>
 </footer>
+
 <script>
-    function showResult(isCorrect) {
-        var result = document.getElementById("result");
-        if (isCorrect) {
-            result.textContent = "Correct!";
+    const quizData = [
+    const questions = [
+        {
+            question: "Which of the following is a renewable energy source?",
+            options: ["Coal", "Solar", "Gasoline", "Plastic"],
+            correct: 1
+            question: "What is the most eco-friendly way to travel?",
+            options: ["Carpooling", "Public Transport", "Biking or Walking", "Flying"],
+            answer: "Biking or Walking"
+        },
+        {
+            question: "What is the best way to reduce plastic waste?",
+            options: ["Burn it", "Use reusable items", "Bury it", "Throw it in a river"],
+            correct: 1
+            question: "Which of these is NOT biodegradable?",
+            options: ["Banana Peel", "Plastic Bottle", "Paper", "Cotton Shirt"],
+            answer: "Plastic Bottle"
+        },
+        {
+            question: "How much of the Earth’s water is freshwater?",
+            options: ["50%", "25%", "10%", "Less than 3%"],
+            correct: 3
+            question: "How long does it take for plastic to decompose?",
+            options: ["50 years", "100 years", "450 years", "1000 years"],
+            answer: "450 years"
+        }
+    ];
+
+    let currentQuestion = 0;
+    
+    function loadQuestion() {
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        optionsElement.innerHTML = "";
+        const quizContainer = document.getElementById("quiz");
+        const questionText = document.getElementById("question-text");
+        const optionsContainer = document.getElementById("options-container");
+
+        const questionData = quizData[currentQuestion];
+        questionElement.textContent = questionData.question;
+        questionText.textContent = questions[currentQuestion].question;
+        optionsContainer.innerHTML = "";
+
+        questionData.options.forEach((option, index) => {
+            const button = document.createElement("button");
+        questions[currentQuestion].options.forEach(option => {
+            let button = document.createElement("button");
+            button.textContent = option;
+            button.onclick = () => checkAnswer(index);
+            optionsElement.appendChild(button);
+            button.onclick = () => checkAnswer(option);
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selectedIndex) {
+        const resultElement = document.getElementById("result");
+        if (selectedIndex === quizData[currentQuestion].correct) {
+            resultElement.textContent = "Correct! 🌱";
+            resultElement.style.color = "green";
+    function checkAnswer(selectedOption) {
+        const result = document.getElementById("result");
+        if (selectedOption === questions[currentQuestion].answer) {
+            result.textContent = "Correct! 🌱";
             result.style.color = "green";
         } else {
-            result.textContent = "Incorrect! Try Again.";
+            resultElement.textContent = "Incorrect! ❌ Try again.";
+            resultElement.style.color = "red";
+            result.textContent = "Incorrect! ❌ Try Again.";
             result.style.color = "red";
         }
+        setTimeout(nextQuestion, 2000);
     }
+    
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            document.getElementById("result").textContent = "";
+        
+        setTimeout(() => {
+            result.textContent = "";
+            currentQuestion = (currentQuestion + 1) % questions.length;
+            loadQuestion();
+        } else {
+            document.getElementById("question").textContent = "Quiz Completed! 🎉";
+            document.getElementById("options").innerHTML = "";
+        }
+        }, 1500);
+    }
+
+    loadQuestion();
+    window.onload = loadQuestion;
 </script>
 </body>
 </html>
