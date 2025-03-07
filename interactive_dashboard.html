@@ -3,72 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Dashboard</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Eco-Friendly Quiz</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .progress-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .progress {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        .low { background-color: #ff4d4d; }
-        .medium { background-color: #ffcc00; }
-        .high { background-color: #4CAF50; }
-        .form-container {
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 30px;
         }
-        input {
-            padding: 8px;
-            margin: 5px;
+        .question {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .options button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 <header>
-    <h1>Interactive Dashboard</h1>
+    <h1>Eco-Friendly Quiz</h1>
 </header>
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="action_log.html">Action Log</a></li>
-        <li><a href="interactive_dashboard.html">Interactive Dashboard</a></li>
-        <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
-        <li><a href="achievements.html">Achievements & Badges</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html">Donate</a></li>  
-    </ul>
-</nav>
 <main>
-    <section>
-        <h2>Visualize Your Progress</h2>
-        <p>Gain insights from interactive charts and data visualizations.</p>
-    </section>
-    
-    <section class="progress-container">
-        <div class="progress" id="progress-level">0%</div>
-    </section>
-    
-    <canvas id="progressChart" width="400" height="400"></canvas>
-    
-    <section class="form-container">
-        <h2>Log Your Action</h2>
-        <label for="action">Eco Action:</label>
-        <input type="text" id="action" placeholder="E.g., Saved water" required>
-        <button onclick="logAction()">Submit</button>
-        <p id="feedback" style="color: red;"></p>
+    <section class="quiz-container">
+        <h2>Test Your Eco Knowledge!</h2>
+        <div class="question" id="question">Loading question...</div>
+        <div class="options" id="options"></div>
+        <div class="result" id="result"></div>
     </section>
 </main>
 <footer>
@@ -76,55 +57,66 @@
 </footer>
 
 <script>
-    let progress = 0;
-    function updateProgress() {
-        let progressDisplay = document.getElementById("progress-level");
-        progress += 10;
-        if (progress > 100) progress = 100;
-        progressDisplay.textContent = progress + "%";
-        
-        if (progress < 40) {
-            progressDisplay.className = "progress low";
-        } else if (progress < 80) {
-            progressDisplay.className = "progress medium";
-        } else {
-            progressDisplay.className = "progress high";
+    const quizData = [
+        {
+            question: "Which of the following is a renewable energy source?",
+            options: ["Coal", "Solar", "Gasoline", "Plastic"],
+            correct: 1
+        },
+        {
+            question: "What is the best way to reduce plastic waste?",
+            options: ["Burn it", "Use reusable items", "Bury it", "Throw it in a river"],
+            correct: 1
+        },
+        {
+            question: "How much of the Earth’s water is freshwater?",
+            options: ["50%", "25%", "10%", "Less than 3%"],
+            correct: 3
         }
-        updateChart();
-    }
+    ];
     
-    function logAction() {
-        let actionInput = document.getElementById("action");
-        let feedback = document.getElementById("feedback");
-        
-        if (actionInput.value.trim() === "") {
-            feedback.textContent = "Please enter a valid action.";
-            return;
-        }
-        
-        feedback.textContent = "Action logged successfully!";
-        feedback.style.color = "green";
-        actionInput.value = "";
-        updateProgress();
-    }
+    let currentQuestion = 0;
     
-    function updateChart() {
-        let ctx = document.getElementById("progressChart").getContext("2d");
-        new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                labels: ["Completed", "Remaining"],
-                datasets: [{
-                    data: [progress, 100 - progress],
-                    backgroundColor: ["#4CAF50", "#ddd"]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
+    function loadQuestion() {
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        optionsElement.innerHTML = "";
+        
+        const questionData = quizData[currentQuestion];
+        questionElement.textContent = questionData.question;
+        
+        questionData.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.onclick = () => checkAnswer(index);
+            optionsElement.appendChild(button);
         });
     }
+    
+    function checkAnswer(selectedIndex) {
+        const resultElement = document.getElementById("result");
+        if (selectedIndex === quizData[currentQuestion].correct) {
+            resultElement.textContent = "Correct! 🌱";
+            resultElement.style.color = "green";
+        } else {
+            resultElement.textContent = "Incorrect! ❌ Try again.";
+            resultElement.style.color = "red";
+        }
+        setTimeout(nextQuestion, 2000);
+    }
+    
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            document.getElementById("result").textContent = "";
+            loadQuestion();
+        } else {
+            document.getElementById("question").textContent = "Quiz Completed! 🎉";
+            document.getElementById("options").innerHTML = "";
+        }
+    }
+    
+    loadQuestion();
 </script>
 </body>
 </html>
