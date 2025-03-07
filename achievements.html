@@ -100,7 +100,7 @@
         "carpool": 0,
         "energy": 0
     };
-    
+
     function logAction(action) {
         let actionMap = {
             "Using public transport": "commuter",
@@ -110,14 +110,17 @@
             "Carpool": "carpool",
             "Use energy-efficient appliances": "energy"
         };
-        
+
         let badgeKey = actionMap[action];
+        console.log(`Logging action: ${action} -> Badge: ${badgeKey}`);
+
         if (badgeKey && progressValues[badgeKey] < 100) {
             progressValues[badgeKey] += 20;
             document.getElementById(`${badgeKey}-progress`).style.width = progressValues[badgeKey] + "%";
+            console.log(`Updated ${badgeKey}-progress to ${progressValues[badgeKey]}%`);
         }
     }
-    
+
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("log-action-btn").addEventListener("click", function() {
             let actionSelected = document.getElementById("action").value;
@@ -125,5 +128,6 @@
         });
     });
 </script>
+
 </body>
 </html>
