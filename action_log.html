@@ -42,7 +42,7 @@
                 <option value="Carpool">Carpool</option>
                 <option value="Use energy-efficient appliances">Use energy-efficient appliances</option>
             </select>
-            <button onclick="addAction()">Log Action</button>
+            <button id="log-action-btn">Log Action</button>
         </div>
         
         <h3>Logged Actions</h3>
@@ -73,7 +73,12 @@
         
         cell1.textContent = action;
         cell2.textContent = now;
+        
+        // Store the action in localStorage to update Achievements page
+        localStorage.setItem("lastLoggedAction", action);
     }
+
+    document.getElementById("log-action-btn").addEventListener("click", addAction);
 </script>
 </body>
 </html>
