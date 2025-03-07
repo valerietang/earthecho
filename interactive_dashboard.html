@@ -61,6 +61,7 @@
     <section class="quiz-container">
         <h2>Test Your Eco Knowledge!</h2>
         <p>Answer the questions below to learn more about sustainability!</p>
+
         <div class="question">Which is a renewable energy source?</div>
         <div class="options">
             <button onclick="document.getElementById('result1').textContent='Incorrect! ❌'; document.getElementById('result1').style.color='red'">Coal</button>
@@ -74,6 +75,43 @@
             <button onclick="document.getElementById('result2').textContent='Correct! 🌱'; document.getElementById('result2').style.color='green'">Use reusable items</button>
         </div>
         <div class="result" id="result2"></div>
+
+        <div class="question">Which of these is NOT biodegradable?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result3').textContent='Incorrect! ❌'; document.getElementById('result3').style.color='red'">Banana Peel</button>
+            <button onclick="document.getElementById('result3').textContent='Correct! 🌱'; document.getElementById('result3').style.color='green'">Plastic Bottle</button>
+        </div>
+        <div class="result" id="result3"></div>
+
+        <div class="question">How long does plastic take to decompose?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result4').textContent='Incorrect! ❌'; document.getElementById('result4').style.color='red'">50 years</button>
+            <button onclick="document.getElementById('result4').textContent='Correct! 🌱'; document.getElementById('result4').style.color='green'">450 years</button>
+        </div>
+        <div class="result" id="result4"></div>
+
+        <div class="question">What is the best way to travel eco-friendly?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result5').textContent='Correct! 🌱'; document.getElementById('result5').style.color='green'">Biking or Walking</button>
+            <button onclick="document.getElementById('result5').textContent='Incorrect! ❌'; document.getElementById('result5').style.color='red'">Flying</button>
+        </div>
+        <div class="result" id="result5"></div>
+
+        <div class="question">What is the percentage of freshwater on Earth?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result6').textContent='Incorrect! ❌'; document.getElementById('result6').style.color='red'">50%</button>
+            <button onclick="document.getElementById('result6').textContent='Correct! 🌱'; document.getElementById('result6').style.color='green'">Less than 3%</button>
+        </div>
+        <div class="result" id="result6"></div>
+
+        <div class="question">Which gas causes global warming?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result7').textContent='Correct! 🌱'; document.getElementById('result7').style.color='green'">Carbon Dioxide</button>
+            <button onclick="document.getElementById('result7').textContent='Incorrect! ❌'; document.getElementById('result7').style.color='red'">Oxygen</button>
+        </div>
+        <div class="result" id="result7"></div>
+
+        <a href="interactive_dashboard.html">Go to Interactive Dashboard</a>
     </section>
 </main>
 <footer>
