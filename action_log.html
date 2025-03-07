@@ -27,9 +27,51 @@
         <h2>Track Your Actions</h2>
         <p>Record and monitor your sustainable activities to measure your impact.</p>
     </section>
+    
+    <section class="container">
+        <h2>Eco-Friendly Action Log</h2>
+        <p>Track your eco-friendly actions and contribute to a sustainable future!</p>
+        
+        <div class="log-entry">
+            <label for="action">Select an action:</label>
+            <select id="action">
+                <option value="Using public transport">Using public transport</option>
+                <option value="Reducing waste">Reducing waste</option>
+                <option value="Saving water">Saving water</option>
+                <option value="Recycling">Recycling</option>
+            </select>
+            <button onclick="addAction()">Log Action</button>
+        </div>
+        
+        <h3>Logged Actions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Time Logged</th>
+                </tr>
+            </thead>
+            <tbody id="action-log">
+            </tbody>
+        </table>
+    </section>
 </main>
 <footer>
     <p>&copy; 2025 Earth Echo. All rights reserved.</p>
 </footer>
+
+<script>
+    function addAction() {
+        let action = document.getElementById("action").value;
+        let table = document.getElementById("action-log");
+        let row = table.insertRow();
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let now = new Date().toLocaleString();
+        
+        cell1.textContent = action;
+        cell2.textContent = now;
+    }
+</script>
 </body>
 </html>
