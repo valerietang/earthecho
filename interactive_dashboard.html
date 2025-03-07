@@ -16,7 +16,7 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
         .question {
-            margin: 15px 0;
+            margin-bottom: 15px;
             font-size: 18px;
         }
         .options button {
@@ -45,59 +45,39 @@
 <header>
     <h1>Eco-Friendly Quiz</h1>
 </header>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="action_log.html">Action Log</a></li>
+        <li><a href="interactive_dashboard.html">Interactive Dashboard</a></li>
+        <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
+        <li><a href="achievements.html">Achievements & Badges</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html">Donate</a></li>   
+    </ul>
+</nav>
 <main>
     <section class="quiz-container">
         <h2>Test Your Eco Knowledge!</h2>
-        <div class="question" id="question"></div>
-        <div class="options" id="options"></div>
-        <div class="result" id="result"></div>
+        <p>Answer the questions below to learn more about sustainability!</p>
+        <div class="question">Which is a renewable energy source?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result1').textContent='Incorrect! ❌'; document.getElementById('result1').style.color='red'">Coal</button>
+            <button onclick="document.getElementById('result1').textContent='Correct! 🌱'; document.getElementById('result1').style.color='green'">Solar</button>
+        </div>
+        <div class="result" id="result1"></div>
+
+        <div class="question">What reduces plastic waste?</div>
+        <div class="options">
+            <button onclick="document.getElementById('result2').textContent='Incorrect! ❌'; document.getElementById('result2').style.color='red'">Burn it</button>
+            <button onclick="document.getElementById('result2').textContent='Correct! 🌱'; document.getElementById('result2').style.color='green'">Use reusable items</button>
+        </div>
+        <div class="result" id="result2"></div>
     </section>
 </main>
 <footer>
     <p>&copy; 2025 Earth Echo. All rights reserved.</p>
 </footer>
-<script>
-    var questions = [
-        { question: "Which is a renewable energy source?", options: ["Coal", "Solar"], answer: "Solar" },
-        { question: "What reduces plastic waste?", options: ["Burn it", "Use reusable items"], answer: "Use reusable items" }
-    ];
-    var currentQuestion = 0;
-
-    function loadQuestion() {
-        document.getElementById("question").textContent = questions[currentQuestion].question;
-        var optionsContainer = document.getElementById("options");
-        optionsContainer.innerHTML = "";
-        questions[currentQuestion].options.forEach(function(option) {
-            var button = document.createElement("button");
-            button.textContent = option;
-            button.onclick = function() { checkAnswer(option); };
-            optionsContainer.appendChild(button);
-        });
-    }
-
-    function checkAnswer(option) {
-        var result = document.getElementById("result");
-        if (option === questions[currentQuestion].answer) {
-            result.textContent = "Correct! 🌱";
-            result.style.color = "green";
-        } else {
-            result.textContent = "Incorrect! ❌";
-            result.style.color = "red";
-        }
-        currentQuestion++;
-        setTimeout(function() {
-            result.textContent = "";
-            if (currentQuestion < questions.length) {
-                loadQuestion();
-            } else {
-                document.getElementById("question").textContent = "Quiz Completed! 🎉";
-                optionsContainer.innerHTML = "";
-            }
-        }, 1500);
-    }
-
-    window.onload = loadQuestion;
-</script>
 </body>
 </html>
-
