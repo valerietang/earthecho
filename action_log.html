@@ -73,12 +73,19 @@
         
         cell1.textContent = action;
         cell2.textContent = now;
-        
-        // Store the action in localStorage to update Achievements page
-        localStorage.setItem("lastLoggedAction", action);
+
+        // Retrieve current action counts from localStorage
+        let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
+
+        // Increase count for the logged action
+        actionCounts[action] = (actionCounts[action] || 0) + 1;
+
+        // Store updated action counts
+        localStorage.setItem("actionCounts", JSON.stringify(actionCounts));
     }
 
     document.getElementById("log-action-btn").addEventListener("click", addAction);
 </script>
+
 </body>
 </html>
