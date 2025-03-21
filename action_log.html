@@ -86,10 +86,16 @@
         console.log("Button clicked: ", event.target); 
 
         event.preventDefault();
+
+        event.target.style.backgroundColor = ''; 
     });
 
     document.getElementById("log-action-btn").addEventListener("mouseover", function(event) {
-        event.target.style.backgroundColor = "#f0f0f0";
+        event.target.style.backgroundColor = "#f0f0f0"; 
+    });
+
+    document.getElementById("log-action-btn").addEventListener("mouseout", function(event) {
+        event.target.style.backgroundColor = ''; 
     });
 
     document.getElementById("action").addEventListener("keydown", function(event) {
