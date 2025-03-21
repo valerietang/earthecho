@@ -101,14 +101,32 @@
         "Use energy-efficient appliances": "energy"
     };
 
+    
+    function animateProgressBar(barElement, targetProgress) {
+        let currentProgress = 0;
+        let interval = setInterval(() => {
+            if (currentProgress >= targetProgress) {
+                clearInterval(interval);
+                return;
+            }
+            currentProgress++;
+            barElement.style.width = currentProgress + "%";
+        }, 20); 
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
 
         Object.keys(actionCounts).forEach(action => {
             let badgeKey = actionMap[action];
-            if (badgeKey && document.getElementById(`${badgeKey}-progress`)) {
-                let progress = Math.min(100, actionCounts[action] * 10); // 10% per logged action
-                document.getElementById(`${badgeKey}-progress`).style.width = progress + "%";
+            let progressBar = document.getElementById(`${badgeKey}-progress`);
+            if (badgeKey && progressBar) {
+                let targetProgress = Math.min(100, actionCounts[action] * 10); 
+
+              
+                setTimeout(() => {
+                    animateProgressBar(progressBar, targetProgress);
+                }, 300); 
             }
         });
     });
