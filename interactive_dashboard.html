@@ -128,8 +128,8 @@
         resultElement.textContent = "";
         questionElement.textContent = questions[currentQuestion].q;
         optionsElement.innerHTML = "";
-        nextButton.style.display = "block"; // Ensure the button shows before last question
-        exitLink.style.display = "none"; // Hide the exit link until the end
+        nextButton.style.display = "block";
+        exitLink.style.display = "none";
 
         questions[currentQuestion].options.forEach((option, index) => {
             const button = document.createElement("button");
@@ -155,8 +155,8 @@
             document.getElementById("question").textContent = "Quiz Completed!";
             document.getElementById("options").innerHTML = "";
             document.getElementById("result").textContent = "Well Done!";
-            document.getElementById("next-btn").style.display = "none"; // Hide "Next Question"
-            document.getElementById("exit").style.display = "inline-block"; // Show dashboard link
+            document.getElementById("next-btn").style.display = "none"; 
+            document.getElementById("exit").style.display = "inline-block"; 
         }
     }
 
