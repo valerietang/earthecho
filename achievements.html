@@ -1,182 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievements & Badges</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .badges-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .badge {
-            width: 120px;
-            height: 120px;
-            background-color: #f0f0f0;
-            text-align: center;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .progress {
-            width: 80%;
-            height: 10px;
-            background-color: #ddd;
-            position: relative;
-            margin-top: 10px;
-        }
-        .progress-bar {
-            height: 100%;
-            background-color: #4CAF50;
-            width: 0%;
-        }
-    </style>
-</head>
-<body>
-<header>
-    <h1>Achievements & Badges</h1>
-</header>
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="action_log.html">Action Log</a></li>
-        <li><a href="interactive_dashboard.html">Interactive Dashboard</a></li>
-        <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
-        <li><a href="achievements.html">Achievements & Badges</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html">Donate</a></li>   
-    </ul>
-</nav>
-<main>
-    <section>
-        <h2>Earn Badges</h2>
-        <p>Unlock badges by completing eco-friendly actions.</p>
-    </section>
-    
-    <section>
-        <h2>Your Achievements</h2>
-        <div class="badges-container">
-            <div class="badge" id="commuter-badge">🚲 Green Commuter
-                <div class="progress"><div class="progress-bar" id="commuter-progress"></div></div>
-            </div>
-            <div class="badge" id="water-badge">💧 Water Saver
-                <div class="progress"><div class="progress-bar" id="water-progress"></div></div>
-            </div>
-            <div class="badge" id="waste-badge">♻️ Waste Reducer
-                <div class="progress"><div class="progress-bar" id="waste-progress"></div></div>
-            </div>
-            <div class="badge" id="recycling-badge">🔄 Recycling Champion
-                <div class="progress"><div class="progress-bar" id="recycling-progress"></div></div>
-            </div>
-            <div class="badge" id="carpool-badge">🚗 Carpool Hero
-                <div class="progress"><div class="progress-bar" id="carpool-progress"></div></div>
-            </div>
-            <div class="badge" id="energy-badge">⚡ Energy Saver
-                <div class="progress"><div class="progress-bar" id="energy-progress"></div></div>
-            </div>
-        </div>
-    </section>
-</main>
-<footer>
-    <p>&copy; 2025 Earth Echo. All rights reserved.</p>
-</footer>
-
-<script>
-    let actionMap = {
-        "Using public transport": "commuter",
-        "Saving water": "water",
-        "Reducing waste": "waste",
-        "Recycling": "recycling",
-        "Carpool": "carpool",
-        "Use energy-efficient appliances": "energy"
-    };
-
-    function animateProgressBar(barElement, targetProgress, badgeElement) {
-        let currentProgress = 0;
-        let interval = setInterval(() => {
-            if (currentProgress >= targetProgress) {
-                clearInterval(interval);
-
-                if (targetProgress === 100) {
-                    // Add glow effect
-                    badgeElement.classList.add("unlocked");
-
-                    // Add a temporary 'Badge Unlocked!' message
-                    let message = document.createElement("div");
-                    message.textContent = "Badge Unlocked!";
-                    message.style.position = "absolute";
-                    message.style.bottom = "-20px";
-                    message.style.fontSize = "12px";
-                    message.style.color = "green";
-                    message.style.animation = "fadeUp 2s ease-out";
-
-                    badgeElement.appendChild(message);
-
-                    // Remove the message after 2 seconds
-                    setTimeout(() => {
-                        badgeElement.removeChild(message);
-                        badgeElement.classList.remove("unlocked");
-                    }, 2000);
-                }
-
-                return;
-            }
-            currentProgress++;
-            barElement.style.width = currentProgress + "%";
-        }, 20);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements & Badges</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .badges-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        localStorage.removeItem("actionCounts");
+    .badge {
+      width: 120px;
+      height: 120px;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-        
-        let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
+    .progress {
+      width: 80%;
+      height: 10px;
+      background-color: #ddd;
+      position: relative;
+      margin-top: 10px;
+    }
 
-        Object.keys(actionCounts).forEach(action => {
-            let badgeKey = actionMap[action];
-            let progressBar = document.getElementById(`${badgeKey}-progress`);
-            let badgeElement = document.getElementById(`${badgeKey}-badge`);
-            if (badgeKey && progressBar && badgeElement) {
-                let targetProgress = Math.min(100, actionCounts[action] * 10);
-                setTimeout(() => {
-                    animateProgressBar(progressBar, targetProgress, badgeElement);
-                }, 300);
-            }
-        });
-    });
-</script>
+    .progress-bar {
+      height: 100%;
+      background-color: #4CAF50;
+      width: 0%;
+    }
 
-<style>
     .badge.unlocked {
-        box-shadow: 0 0 15px 5px gold;
-        transition: box-shadow 0.3s ease-in-out;
+      box-shadow: 0 0 15px 5px gold;
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     @keyframes fadeUp {
-        0% {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        50% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
     }
-</style>
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Achievements & Badges</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="action_log.html">Action Log</a></li>
+      <li><a href="interactive_dashboard.html">Interactive Dashboard</a></li>
+      <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
+      <li><a href="achievements.html">Achievements & Badges</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="donate.html">Donate</a></li>   
+    </ul>
+  </nav>
+  <main>
+    <section>
+      <h2>Earn Badges</h2>
+      <p>Unlock badges by completing eco-friendly actions.</p>
+    </section>
+    
+    <section>
+      <h2>Your Achievements</h2>
+      <div class="badges-container">
+        <div class="badge" id="commuter-badge">🚲 Green Commuter
+          <div class="progress"><div class="progress-bar" id="commuter-progress"></div></div>
+        </div>
+        <div class="badge" id="water-badge">💧 Water Saver
+          <div class="progress"><div class="progress-bar" id="water-progress"></div></div>
+        </div>
+        <div class="badge" id="waste-badge">♻️ Waste Reducer
+          <div class="progress"><div class="progress-bar" id="waste-progress"></div></div>
+        </div>
+        <div class="badge" id="recycling-badge">🔄 Recycling Champion
+          <div class="progress"><div class="progress-bar" id="recycling-progress"></div></div>
+        </div>
+        <div class="badge" id="carpool-badge">🚗 Carpool Hero
+          <div class="progress"><div class="progress-bar" id="carpool-progress"></div></div>
+        </div>
+        <div class="badge" id="energy-badge">⚡ Energy Saver
+          <div class="progress"><div class="progress-bar" id="energy-progress"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Earth Echo. All rights reserved.</p>
+  </footer>
 
+  <script>
+    let actionMap = {
+      "Using public transport": "commuter",
+      "Saving water": "water",
+      "Reducing waste": "waste",
+      "Recycling": "recycling",
+      "Carpool": "carpool",
+      "Use energy-efficient appliances": "energy"
+    };
+
+    function animateProgressBar(barElement, targetProgress, badgeElement, actionName, actionCounts) {
+      let currentProgress = 0;
+      let interval = setInterval(() => {
+        if (currentProgress >= targetProgress) {
+          clearInterval(interval);
+
+          if (targetProgress === 100) {
+            badgeElement.classList.add("unlocked");
+
+            let message = document.createElement("div");
+            message.textContent = "Badge Unlocked!";
+            message.style.position = "absolute";
+            message.style.bottom = "-20px";
+            message.style.fontSize = "12px";
+            message.style.color = "green";
+            message.style.animation = "fadeUp 2s ease-out";
+
+            badgeElement.appendChild(message);
+
+            setTimeout(() => {
+              badgeElement.removeChild(message);
+              badgeElement.classList.remove("unlocked");
+              barElement.style.width = "0%";
+
+              // Reset progress for that badge in localStorage
+              actionCounts[actionName] = 0;
+              localStorage.setItem("actionCounts", JSON.stringify(actionCounts));
+            }, 2000);
+          }
+
+          return;
+        }
+
+        currentProgress++;
+        barElement.style.width = currentProgress + "%";
+      }, 20);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample data if none exists
+      if (!localStorage.getItem("actionCounts")) {
+        const defaultActions = {
+          "Using public transport": 10,
+          "Saving water": 10,
+          "Reducing waste": 9,
+          "Recycling": 7,
+          "Carpool": 10,
+          "Use energy-efficient appliances": 6
+        };
+        localStorage.setItem("actionCounts", JSON.stringify(defaultActions));
+      }
+
+      let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
+
+      Object.keys(actionCounts).forEach(action => {
+        let badgeKey = actionMap[action];
+        let progressBar = document.getElementById(`${badgeKey}-progress`);
+        let badgeElement = document.getElementById(`${badgeKey}-badge`);
+        if (badgeKey && progressBar && badgeElement) {
+          let targetProgress = Math.min(100, actionCounts[action] * 10);
+          setTimeout(() => {
+            animateProgressBar(progressBar, targetProgress, badgeElement, action, actionCounts);
+          }, 300);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
