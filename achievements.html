@@ -137,6 +137,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
+        localStorage.removeItem("actionCounts");
+
+        
         let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
 
         Object.keys(actionCounts).forEach(action => {
