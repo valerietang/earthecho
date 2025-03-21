@@ -24,7 +24,7 @@
     </ul>
 </nav>
 <body>
-    <form action="#" method="post" id="donation-form">
+    <form id="donationForm" action="#" method="post">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -43,9 +43,9 @@
             <option value="other">Other</option>
         </select><br><br>
 
-        <div id="other-amount-container" style="display:none;">
-            <label for="other_amount">Enter your donation amount:</label>
-            <input type="number" id="other_amount" name="other_amount" min="1" step="any"><br><br>
+        <div id="other-amount-container" style="display: none;">
+            <label for="other_amount">Enter Your Amount:</label>
+            <input type="number" id="other_amount" name="other_amount" min="1" step="any">
         </div>
 
         <label>Payment Method:</label><br>
@@ -66,17 +66,14 @@
     </form>
 
     <script>
-        // Show input field for custom donation amount when "Other" is selected
-        const donationSelect = document.getElementById('donation_amount');
-        const otherAmountContainer = document.getElementById('other-amount-container');
-        const otherAmountInput = document.getElementById('other_amount');
+        const donationSelect = document.getElementById("donation_amount");
+        const otherAmountContainer = document.getElementById("other-amount-container");
 
-        donationSelect.addEventListener('change', function() {
-            if (donationSelect.value === 'other') {
-                otherAmountContainer.style.display = 'block'; // Show the input
+        donationSelect.addEventListener("change", function() {
+            if (this.value === "other") {
+                otherAmountContainer.style.display = "block";
             } else {
-                otherAmountContainer.style.display = 'none'; // Hide the input
-                otherAmountInput.value = ''; // Clear the custom input if not selected
+                otherAmountContainer.style.display = "none";
             }
         });
     </script>
