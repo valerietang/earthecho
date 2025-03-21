@@ -55,19 +55,18 @@
         }
         #exit {
             display: none;
-            margin-top: 15px;
-            padding: 10px 15px;
-            font-size: 16px;
-            background-color: #008CBA;
-            color: white;
+            margin-top: 20px;
             text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            background-color: #008CBA;
+            padding: 10px 15px;
             border-radius: 5px;
             display: inline-block;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s ease;
         }
         #exit:hover {
-            background-color: #0073a8;
-            transform: scale(1.1);
+            background-color: #005f75;
         }
     </style>
 </head>
@@ -123,10 +122,15 @@
         const questionElement = document.getElementById("question");
         const optionsElement = document.getElementById("options");
         const resultElement = document.getElementById("result");
-        const nextBtn = document.getElementById("next-btn");
+        const nextButton = document.getElementById("next-btn");
+        const exitLink = document.getElementById("exit");
+
         resultElement.textContent = "";
         questionElement.textContent = questions[currentQuestion].q;
         optionsElement.innerHTML = "";
+        nextButton.style.display = "block"; // Ensure the button shows before last question
+        exitLink.style.display = "none"; // Hide the exit link until the end
+
         questions[currentQuestion].options.forEach((option, index) => {
             const button = document.createElement("button");
             button.textContent = option;
@@ -138,7 +142,6 @@
                     resultElement.textContent = "Incorrect! ❌";
                     resultElement.style.color = "red";
                 }
-                nextBtn.style.display = "block"; 
             };
             optionsElement.appendChild(button);
         });
@@ -152,8 +155,8 @@
             document.getElementById("question").textContent = "Quiz Completed!";
             document.getElementById("options").innerHTML = "";
             document.getElementById("result").textContent = "Well Done!";
-            document.getElementById("next-btn").style.display = "none";
-            document.getElementById("exit").style.display = "inline-block";
+            document.getElementById("next-btn").style.display = "none"; // Hide "Next Question"
+            document.getElementById("exit").style.display = "inline-block"; // Show dashboard link
         }
     }
 
