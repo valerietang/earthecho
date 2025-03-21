@@ -101,17 +101,39 @@
         "Use energy-efficient appliances": "energy"
     };
 
-    
-    function animateProgressBar(barElement, targetProgress) {
+    function animateProgressBar(barElement, targetProgress, badgeElement) {
         let currentProgress = 0;
         let interval = setInterval(() => {
             if (currentProgress >= targetProgress) {
                 clearInterval(interval);
+
+                if (targetProgress === 100) {
+                    // Add glow effect
+                    badgeElement.classList.add("unlocked");
+
+                    // Add a temporary 'Badge Unlocked!' message
+                    let message = document.createElement("div");
+                    message.textContent = "Badge Unlocked!";
+                    message.style.position = "absolute";
+                    message.style.bottom = "-20px";
+                    message.style.fontSize = "12px";
+                    message.style.color = "green";
+                    message.style.animation = "fadeUp 2s ease-out";
+
+                    badgeElement.appendChild(message);
+
+                    // Remove the message after 2 seconds
+                    setTimeout(() => {
+                        badgeElement.removeChild(message);
+                        badgeElement.classList.remove("unlocked");
+                    }, 2000);
+                }
+
                 return;
             }
             currentProgress++;
             barElement.style.width = currentProgress + "%";
-        }, 20); 
+        }, 20);
     }
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -120,17 +142,38 @@
         Object.keys(actionCounts).forEach(action => {
             let badgeKey = actionMap[action];
             let progressBar = document.getElementById(`${badgeKey}-progress`);
-            if (badgeKey && progressBar) {
-                let targetProgress = Math.min(100, actionCounts[action] * 10); 
-
-              
+            let badgeElement = document.getElementById(`${badgeKey}-badge`);
+            if (badgeKey && progressBar && badgeElement) {
+                let targetProgress = Math.min(100, actionCounts[action] * 10);
                 setTimeout(() => {
-                    animateProgressBar(progressBar, targetProgress);
-                }, 300); 
+                    animateProgressBar(progressBar, targetProgress, badgeElement);
+                }, 300);
             }
         });
     });
 </script>
+
+<style>
+    .badge.unlocked {
+        box-shadow: 0 0 15px 5px gold;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+    }
+</style>
 
 </body>
 </html>
