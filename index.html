@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earth Echo</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .side-image img {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,22 +29,41 @@
         <li><a href="achievements.html">Achievements & Badges</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="donate.html">Donate</a></li>
-
     </ul>
 </nav>
 
 <main>
     <section>
         <h2>Welcome to Earth Echo!</h2>
-        <p>We empower individuals to lead a sustainable lifestyle with easy-to-use tracking tools, eco inspriations, and motivational milestones. Click anywhere on the navigation bar above to begin!</p>
+        <p>We empower individuals to lead a sustainable lifestyle with easy-to-use tracking tools, eco inspirations, and motivational milestones. Click anywhere on the navigation bar above to begin!</p>
     </section>
     <section class="side-image">
-        <img src="https://img.freepik.com/premium-vector/think-green-ecology-concept-with-young-happy-eco-friendly-woman-earth-day-nature-love-female-character-environment-conservation-creative-thinking-flat-cartoon-vector-illustration_534430-810.jpg" alt="Think Green" />
+        <img id="ecoImage" src="https://img.freepik.com/premium-vector/think-green-ecology-concept-with-young-happy-eco-friendly-woman-earth-day-nature-love-female-character-environment-conservation-creative-thinking-flat-cartoon-vector-illustration_534430-810.jpg" alt="Think Green" />
     </section>
 </main>
+
 <footer>
     <p>&copy; 2025 Earth Echo. All rights reserved.</p>
     <p>Image credit: <a href="https://www.freepik.com/premium-vector/think-green-ecology-concept-with-young-happy-eco-friendly-woman-earth-day-nature-love-female-character-environment-conservation-creative-thinking-flat-cartoon-vector-illustration_25932415.htm" target="_blank">Freepik</a></p>
 </footer>
+
+<script>
+    window.onload = function() {
+        let img = document.getElementById("ecoImage");
+        
+        setTimeout(() => {
+            img.style.opacity = "1";
+            img.style.transform = "scale(1)";
+        }, 500);
+        
+        setInterval(() => {
+            img.style.transform = "scale(1.1)";
+            setTimeout(() => {
+                img.style.transform = "scale(1)";
+            }, 500);
+        }, 2000);
+    };
+</script>
+
 </body>
 </html>
