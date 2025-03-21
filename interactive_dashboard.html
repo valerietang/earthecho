@@ -66,7 +66,7 @@
         <div class="options" id="options"></div>
         <div class="result" id="result"></div>
         
-        <button onclick="nextQuestion()">Next Question</button>
+        <button id="next-btn">Next Question</button>
         <a href="interactive_dashboard.html" id="exit" style="display:none;">Go to Interactive Dashboard</a>
     </section>
 </main>
@@ -123,6 +123,22 @@
             document.getElementById("exit").style.display = "block";
         }
     }
+
+    document.getElementById("next-btn").addEventListener("click", nextQuestion);
+
+    document.getElementById("next-btn").addEventListener("mouseover", function(event) {
+        event.target.style.backgroundColor = "#45a049";
+    });
+
+    document.getElementById("next-btn").addEventListener("mouseout", function(event) {
+        event.target.style.backgroundColor = "#4CAF50";
+    });
+
+    document.getElementById("next-btn").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            nextQuestion();
+        }
+    });
 
     showQuestion();
 </script>
