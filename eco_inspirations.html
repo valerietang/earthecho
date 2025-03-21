@@ -1,65 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco Inspirations</title>
-    <link rel="stylesheet" href="style.css"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eco Inspirations</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Optional: Make the scroll button look nicer */
+    .scroll-btn {
+      margin: 20px auto;
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .scroll-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-<header>
+  <header>
     <h1>Eco Inspirations</h1>
-</header>
-<nav>
+  </header>
+  <nav>
     <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="action_log.html">Action Log</a></li>
-        <li><a href="interactive_dashboard.html">Interactive Dashboard</a></li>
-        <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
-        <li><a href="achievements.html">Achievements & Badges</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html">Donate</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="action_log.html">Action Log</a></li>
+      <li><a href="interactive_dashboard.html">Interactive Dashboard</a></li>
+      <li><a href="eco_inspirations.html">Eco Inspirations</a></li>
+      <li><a href="achievements.html">Achievements & Badges</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="donate.html">Donate</a></li>
     </ul>
-</nav>
-<main>
+  </nav>
+  <main>
     <section>
-        <h2>Get Inspired</h2>
-        <p>Discover stories, tips, and guides to enhance your sustainable journey.</p>
+      <h2>Get Inspired</h2>
+      <p>Discover stories, tips, and guides to enhance your sustainable journey.</p>
+
+      <!-- ✅ Scroll Button Added -->
+      <button class="scroll-btn" onclick="scrollToTips()">Scroll to Tips</button>
     </section>
-    
-    <section class="eco-tips">
-        <h2>Eco-Friendly Tips</h2>
-        <ul>
-            <li>Reduce single-use plastics by using reusable bags and containers.</li>
-            <li>Conserve energy by turning off lights and unplugging devices when not in use.</li>
-            <li>Use public transportation, bike, or walk to reduce your carbon footprint.</li>
-            <li>Support sustainable brands and shop locally.</li>
-            <li>Practice composting to reduce food waste.</li>
-        </ul>
+
+    <section class="eco-tips" id="eco-tips">
+      <h2>Eco-Friendly Tips</h2>
+      <ul>
+        <li>Reduce single-use plastics by using reusable bags and containers.</li>
+        <li>Conserve energy by turning off lights and unplugging devices when not in use.</li>
+        <li>Use public transportation, bike, or walk to reduce your carbon footprint.</li>
+        <li>Support sustainable brands and shop locally.</li>
+        <li>Practice composting to reduce food waste.</li>
+      </ul>
     </section>
-    
+
     <section class="eco-articles">
-        <h2>Featured Articles</h2>
-        <article>
-            <h3>12 Simple Ways to Live More Sustainably</h3>
-            <p>Learn easy and practical steps to reduce your environmental impact every day.</p>
-            <a href="https://www.biologicaldiversity.org/programs/population_and_sustainability/sustainability/live_more_sustainably.html#" target="_blank">Read More</a>
-        </article>
-        <article>
-            <h3>The Importance of Recycling</h3>
-            <p>Understand how recycling benefits the environment and how to do it effectively.</p>
-            <a href="https://northhillbottledepot.ca/why-is-recycling-important-10-benefits-of-recycling/" target="_blank">Read More</a>
-        </article>
+      <h2>Featured Articles</h2>
+      <article>
+        <h3>12 Simple Ways to Live More Sustainably</h3>
+        <p>Learn easy and practical steps to reduce your environmental impact every day.</p>
+        <a href="https://www.biologicaldiversity.org/programs/population_and_sustainability/sustainability/live_more_sustainably.html#" target="_blank">Read More</a>
+      </article>
+      <article>
+        <h3>The Importance of Recycling</h3>
+        <p>Understand how recycling benefits the environment and how to do it effectively.</p>
+        <a href="https://northhillbottledepot.ca/why-is-recycling-important-10-benefits-of-recycling/" target="_blank">Read More</a>
+      </article>
     </section>
 
     <section class="side-image">
-        <img src="https://img.freepik.com/premium-vector/think-green-ecology-concept-with-young-happy-eco-friendly-woman-earth-day-nature-love-female-character-environment-conservation-creative-thinking-flat-cartoon-vector-illustration_534430-810.jpg" alt="Think Green" />
+      <img src="https://img.freepik.com/premium-vector/think-green-ecology-concept-with-young-happy-eco-friendly-woman-earth-day-nature-love-female-character-environment-conservation-creative-thinking-flat-cartoon-vector-illustration_534430-810.jpg" alt="Think Green" />
     </section>
-</main>
-<footer>
+  </main>
+
+  <footer>
     <p>&copy; 2025 Earth Echo. All rights reserved.</p>
     <p>Image credit: <a href="https://www.freepik.com/premium-vector/think-green-ecology-concept-with-young-happy-eco-friendly-woman-earth-day-nature-love-female-character-environment-conservation-creative-thinking-flat-cartoon-vector-illustration_25932415.htm" target="_blank">Freepik</a></p>
-</footer>
+  </footer>
+
+  <script>
+    function scrollToTips() {
+      const tipsSection = document.getElementById("eco-tips");
+      if (tipsSection) {
+        window.scroll({
+          top: tipsSection.offsetTop - 10,
+          left: 0,
+          behavior: "smooth"
+        });
+      }
+    }
+  </script>
 </body>
 </html>
