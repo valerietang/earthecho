@@ -64,8 +64,8 @@
 
 <script>
     function addAction() {
-        let action = document.querySelector("#action").value;  
-        let table = document.querySelector("#action-log");  
+        let action = document.querySelector("#action").value;
+        let table = document.querySelector("#action-log");
         let row = table.insertRow();
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
@@ -75,31 +75,29 @@
         cell2.textContent = now;
 
         let actionCounts = JSON.parse(localStorage.getItem("actionCounts")) || {};
-
         actionCounts[action] = (actionCounts[action] || 0) + 1;
-
         localStorage.setItem("actionCounts", JSON.stringify(actionCounts));
     }
 
     document.getElementById("log-action-btn").addEventListener("click", function(event) {
         addAction();
-        console.log("Button clicked: ", event.target); 
-
         event.preventDefault();
-
-        event.target.style.backgroundColor = ''; 
+        event.target.style.backgroundColor = '#f0f0f0';
+        setTimeout(() => {
+            event.target.style.backgroundColor = '';
+        }, 300);
     });
 
     document.getElementById("log-action-btn").addEventListener("mouseover", function(event) {
-        event.target.style.backgroundColor = "#f0f0f0"; 
+        event.target.style.backgroundColor = "#f0f0f0";
     });
 
     document.getElementById("log-action-btn").addEventListener("mouseout", function(event) {
-        event.target.style.backgroundColor = ''; 
+        event.target.style.backgroundColor = '';
     });
 
     document.getElementById("action").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {  
+        if (event.key === "Enter") {
             addAction();
             console.log("Action logged by pressing Enter");
         }
